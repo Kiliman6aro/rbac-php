@@ -1,6 +1,6 @@
 # RBAC-PHP
 
-RBAC-PHP is a simple implementation of Role-Based Access Control (RBAC) system in PHP. This project is created to demonstrate RBAC principles and Test-Driven Development (TDD) methodology.
+RBAC-PHP is an implementation of Role-Based Access Control (RBAC) system in PHP. 
 
 ## Installation
 
