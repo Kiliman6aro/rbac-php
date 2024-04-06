@@ -1,0 +1,26 @@
+{
+    "name": "hophey/rbac",
+    "description": "Role-based access control on native PHP",
+    "type": "library",
+    "config": {
+        "platform": {
+            "php": "8.1"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "HopHey\\Rbac\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "B.Pavel",
+            "email": "kiliman6aro@gmail.com"
+        }
+    ],
+    "require": {}
+}

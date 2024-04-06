@@ -1,0 +1,19 @@
+<phpunit>
+    <testsuites>
+        <testsuite name="RBAC Tests">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+    <php>
+        <includePath>src</includePath>
+    </php>
+    <coverage processUncoveredFiles="true">
+        <include>
+            <directory>src</directory>
+        </include>
+        <report>
+            <html outputDirectory="coverage-report"/>
+            <clover outputFile="coverage.xml" />
+        </report>
+    </coverage>
+</phpunit>
