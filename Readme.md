@@ -33,7 +33,7 @@ if ($rbac->userHasPermission('John', 'editPost')) {
 } else {
  echo 'User does not have permission to edit posts';
 }
-
+```
 
 ## License
 
