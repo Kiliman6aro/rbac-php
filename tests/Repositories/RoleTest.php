@@ -1,6 +1,6 @@
 <?php
 
-namespace Repository;
+namespace Repositories;
 
 use HopHey\Rbac\Repositories\RolesRepository;
 use PHPUnit\Framework\TestCase;

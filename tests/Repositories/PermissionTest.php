@@ -1,6 +1,6 @@
 <?php
 
-namespace Repository;
+namespace Repositories;
 
 use HopHey\Rbac\Repositories\PermissionsRepository;
 use PHPUnit\Framework\TestCase;

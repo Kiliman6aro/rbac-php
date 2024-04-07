@@ -2,9 +2,9 @@
 
 namespace HopHey\Rbac\Repositories;
 
-use HopHey\Rbac\Contracts\Repository;
+use HopHey\Rbac\Entities\Role;
 
-class RolesRepository implements Repository
+class RolesRepository
 {
     protected array $roles = [];
 
@@ -24,5 +24,13 @@ class RolesRepository implements Repository
         if($this->exists($key)){
             unset($this->roles[$key]);
         }
+    }
+
+    public function findRoleByName(string $name): ?Role
+    {
+        if($this->exists($name)){
+            return new Role($name);
+        }
+        return null;
     }
 }
