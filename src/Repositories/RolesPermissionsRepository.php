@@ -16,7 +16,7 @@ class RolesPermissionsRepository implements RolePermissionRepository
 
     public function delete(string $role, string $permission): void
     {
-        if($this->exists($role, $role)){
+        if($this->exists($role, $permission)){
             $idx = array_search($role, $this->roles[$role]['permissions']);
             unset($this->roles[$role]['permissions'][$idx]);
         }
