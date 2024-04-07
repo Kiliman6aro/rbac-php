@@ -24,9 +24,4 @@ class UsersRepository implements Repository
     {
         return isset($this->users[$key]);
     }
-
-    public function getUserRoles(string $key): array
-    {
-        return $this->users[$key]['roles'];
-    }
 }
