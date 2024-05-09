@@ -7,25 +7,25 @@ use PHPUnit\Framework\TestCase;
 
 class RoleTest extends TestCase
 {
-    protected RolesRepository $role;
+    protected RolesRepository $rolesRepository;
 
     protected function setUp(): void
     {
-        $this->role = new RolesRepository();
+        $this->rolesRepository = new RolesRepository();
     }
 
     public function testInsert()
     {
-        $this->assertFalse($this->role->exists('admin'));
-        $this->role->insert('admin');
-        $this->assertTrue($this->role->exists('admin'));
+        $this->assertFalse($this->rolesRepository->exists('admin'));
+        $this->rolesRepository->insert('admin');
+        $this->assertTrue($this->rolesRepository->exists('admin'));
     }
 
     public function testDelete()
     {
-        $this->role->insert('admin');
-        $this->assertTrue($this->role->exists('admin'));
-        $this->role->delete('admin');
-        $this->assertFalse($this->role->exists('admin'));
+        $this->rolesRepository->insert('admin');
+        $this->assertTrue($this->rolesRepository->exists('admin'));
+        $this->rolesRepository->delete('admin');
+        $this->assertFalse($this->rolesRepository->exists('admin'));
     }
 }

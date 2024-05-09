@@ -7,25 +7,25 @@ use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase
 {
-    protected $user;
+    protected $usersRepository;
 
     protected function setUp(): void
     {
-        $this->user = new UsersRepository();
+        $this->usersRepository = new UsersRepository();
     }
 
     public function testInsert()
     {
-        $this->assertFalse($this->user->exists('John'));
-        $this->user->insert('John');
-        $this->assertTrue($this->user->exists('John'));
+        $this->assertFalse($this->usersRepository->exists('John'));
+        $this->usersRepository->insert('John');
+        $this->assertTrue($this->usersRepository->exists('John'));
     }
 
     public function testDelete()
     {
-        $this->user->insert('John');
-        $this->assertTrue($this->user->exists('John'));
-        $this->user->delete('John');
-        $this->assertFalse($this->user->exists('John'));
+        $this->usersRepository->insert('John');
+        $this->assertTrue($this->usersRepository->exists('John'));
+        $this->usersRepository->delete('John');
+        $this->assertFalse($this->usersRepository->exists('John'));
     }
 }

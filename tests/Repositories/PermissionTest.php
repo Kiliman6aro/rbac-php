@@ -7,25 +7,25 @@ use PHPUnit\Framework\TestCase;
 
 class PermissionTest extends TestCase
 {
-    protected PermissionsRepository $permission;
+    protected PermissionsRepository $permissionsRepository;
 
     protected function setUp(): void
     {
-        $this->permission = new PermissionsRepository();
+        $this->permissionsRepository = new PermissionsRepository();
     }
 
     public function testInsert()
     {
-        $this->assertFalse($this->permission->exists('editPost'));
-        $this->permission->insert('editPost');
-        $this->assertTrue($this->permission->exists('editPost'));
+        $this->assertFalse($this->permissionsRepository->exists('editPost'));
+        $this->permissionsRepository->insert('editPost');
+        $this->assertTrue($this->permissionsRepository->exists('editPost'));
     }
 
     public function testDelete()
     {
-        $this->permission->insert('editPost');
-        $this->assertTrue($this->permission->exists('editPost'));
-        $this->permission->delete('editPost');
-        $this->assertFalse($this->permission->exists('editPost'));
+        $this->permissionsRepository->insert('editPost');
+        $this->assertTrue($this->permissionsRepository->exists('editPost'));
+        $this->permissionsRepository->delete('editPost');
+        $this->assertFalse($this->permissionsRepository->exists('editPost'));
     }
 }
