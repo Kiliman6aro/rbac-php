@@ -8,10 +8,10 @@ class Item
     public const TYPE_ROLE = 1;
     public const TYPE_PERMISSION = 2;
 
-    private Identity $identity;
-    private string $name;
+    protected Identity $identity;
+    protected string $name;
 
-    private int $type;
+    protected int $type;
 
     /**
      * @param string $name
