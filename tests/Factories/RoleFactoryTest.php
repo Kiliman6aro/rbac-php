@@ -6,7 +6,7 @@ namespace HopHey\Rbac\Tests\Factories;
 use HopHey\Rbac\Contracts\Identity;
 use HopHey\Rbac\Entities\Role;
 use HopHey\Rbac\Entities\StaticIntegerIdentity;
-use HopHey\Rbac\Factory\RoleFactory;
+use HopHey\Rbac\Factories\RoleFactory;
 use PHPUnit\Framework\TestCase;
 
 class RoleFactoryTest extends TestCase

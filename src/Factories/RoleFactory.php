@@ -1,11 +1,12 @@
 <?php
-namespace HopHey\Rbac\Factory;
+namespace HopHey\Rbac\Factories;
 
+use HopHey\Rbac\Contracts\Factories\ItemFactory;
 use HopHey\Rbac\Contracts\Identity;
 use HopHey\Rbac\Entities\Item;
 use HopHey\Rbac\Entities\Role;
 
-class RoleFactory extends ItemFactory
+class RoleFactory implements ItemFactory
 {
     public function create(Identity $identity, string $name, int $type = null): Role
     {

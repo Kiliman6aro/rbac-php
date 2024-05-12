@@ -4,7 +4,7 @@ namespace HopHey\Rbac\Tests\Factories;
 use HopHey\Rbac\Contracts\Identity;
 use HopHey\Rbac\Entities\Permission;
 use HopHey\Rbac\Entities\StaticIntegerIdentity;
-use HopHey\Rbac\Factory\PermissionFactory;
+use HopHey\Rbac\Factories\PermissionFactory;
 use PHPUnit\Framework\TestCase;
 
 class PermissionFactoryTest extends TestCase
