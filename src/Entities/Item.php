@@ -16,7 +16,7 @@ class Item
     /**
      * @param string $name
      */
-    public function __construct(Identity $identity, string $name, int $type)
+    public function __construct(Identity $identity, string $name, ?int $type = null)
     {
         $this->identity = $identity;
         $this->name = $name;

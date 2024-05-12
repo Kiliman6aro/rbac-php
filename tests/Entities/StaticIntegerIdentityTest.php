@@ -1,5 +1,6 @@
 <?php
 
+namespace HopHey\Rbac\Tests\Entities;
 
 use HopHey\Rbac\Entities\StaticIntegerIdentity;
 use PHPUnit\Framework\TestCase;

@@ -1,4 +1,7 @@
 <?php
+
+namespace HopHey\Rbac\Tests\Entities;
+
 use HopHey\Rbac\Entities\UUIDIdentity;
 use PHPUnit\Framework\TestCase;
 

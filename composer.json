@@ -13,7 +13,8 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "HopHey\\Rbac\\": "src/"
+            "HopHey\\Rbac\\": "src/",
+            "HopHey\\Rbac\\Tests\\": "tests/"
         }
     },
     "authors": [

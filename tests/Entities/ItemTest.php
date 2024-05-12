@@ -1,5 +1,7 @@
 <?php
 
+namespace HopHey\Rbac\Tests\Entities;
+
 use HopHey\Rbac\Entities\Item;
 use HopHey\Rbac\Entities\StaticIntegerIdentity;
 
@@ -17,7 +19,7 @@ class ItemTest extends TestCase
     public function testGetIdWithStringCatchTypeError()
     {
         $id = uniqid();
-        $this->expectException(TypeError::class);
+        $this->expectException(\TypeError::class);
         $item = $this->createItem($id, "moderator", Item::TYPE_ROLE);
     }
 

@@ -1,5 +1,7 @@
 <?php
 
+namespace HopHey\Rbac\Tests\Repositories;
+
 use HopHey\Rbac\Entities\Item;
 use HopHey\Rbac\Entities\StaticIntegerIdentity;
 use HopHey\Rbac\Repositories\MemoryItemChildRepository;
