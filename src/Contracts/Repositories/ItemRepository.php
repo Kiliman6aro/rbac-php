@@ -7,9 +7,17 @@ use HopHey\Rbac\Entities\Item;
 interface ItemRepository
 {
     public function insert(Item $item): void;
+    
     public function update(Item $item): Item;
+    
     public function remove(Item $item): void;
+    
     public function findById($id): ?Item;
+    
+    public function findByName(string $name): ?Item;
 
-    public function exists($id): bool;
+    public function existsById(int|string $id): bool;
+    
+    public function existsByName(string $name): bool;
+    
 }

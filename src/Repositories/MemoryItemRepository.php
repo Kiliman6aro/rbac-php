@@ -13,37 +13,56 @@ class MemoryItemRepository implements ItemRepository
 
     public function insert(Item $item): void
     {
-        if($this->exists($item->getId())){
-            throw new AlreadyItemExistsException(sprintf("Item with id: %s is already exists.", $item->getId()));
-        }
+        $item->setId(uniqid());
         $this->collection[$item->getId()] = $item;
+       
     }
     public function update(Item $item): Item
     {
-        if(!$this->exists($item->getId())){
-            throw new NotFoundItemException(sprintf("Item with id: %s not found.", $item->getId()));
+        if(!$this->existsById($item->getId())){
+            throw new NotFoundItemException();
         }
         $this->collection[$item->getId()] = $item;
         return $item;
     }
     public function remove(Item $item): void
     {
-        if(!$this->exists($item->getId())){
-            throw new NotFoundItemException(sprintf("Item with id: %s not found.", $item->getId()));
+        if(!$this->existsById($item->getId())){
+            throw new NotFoundItemException();
         }
         unset($this->collection[$item->getId()]);
     }
 
     public function findById($id): ?Item
     {
-        if(!$this->exists($id)){
+        if(!$this->existsById($id)){
             return null;
         }
         return $this->collection[$id];
     }
+    
+    public function findByName(string $name): ?Item
+    {
+        foreach ($this->collection as $item){
+            if($item->getName() == $name){
+                return $item;
+            }
+        }
+    }
 
-    public function exists($id): bool
+    public function existsById(int|string $id): bool
     {
         return isset($this->collection[$id]);
+    }
+    
+    
+    public function existsByName(string $name): bool
+    {
+        foreach ($this->collection as $item){
+            if($item->getName() == $name){
+                return true;
+            }
+        }
+        return false;
     }
 }

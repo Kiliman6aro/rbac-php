@@ -4,7 +4,6 @@ namespace HopHey\Rbac\Tests\Repositories;
 
 use HopHey\Rbac\Entities\Item;
 use HopHey\Rbac\Entities\Role;
-use HopHey\Rbac\Entities\StaticIntegerIdentity;
 use HopHey\Rbac\Exceptions\AlreadyItemExistsException;
 use HopHey\Rbac\Exceptions\NotFoundItemException;
 use HopHey\Rbac\Repositories\MemoryItemRepository;
@@ -14,38 +13,30 @@ class MemoryItemRepositoryTest extends TestCase
 {
 
     private MemoryItemRepository $memoryItemRepository;
+    
     protected function setUp(): void
     {
         $this->memoryItemRepository = new MemoryItemRepository();
 
-        $id = 1;
-        $item = $this->createItem($id);
+        $item = $this->createItem('admin');
+        $item->setId(1);
         $this->memoryItemRepository->insert($item);
     }
 
 
     public function testInsertNewItemToRepository()
     {
-        $id = 10;
-        $item = $this->createItem($id);
+        $item = $this->createItem('moderator');
         $this->memoryItemRepository->insert($item);
-        $this->assertTrue($this->memoryItemRepository->exists($id));
-    }
-
-    public function testCatchAlreadyExistsException()
-    {
-        $id = 1;
-        $item = $this->createItem($id);
-        $this->expectException(AlreadyItemExistsException::class);
-        $this->memoryItemRepository->insert($item);
+        $this->assertTrue($this->memoryItemRepository->existsByName('moderator'));
     }
 
     public function testUpdateItem()
     {
-        $id = 10;
-        $item = $this->createItem($id);
-        $this->memoryItemRepository->insert($item);
-        $this->assertTrue($this->memoryItemRepository->exists($id));
+        $item = $this->memoryItemRepository->findByName('admin');
+        $id = $item->getId();
+        
+        $this->assertTrue($this->memoryItemRepository->existsById($id));
         $newName = "manager";
         $item->setName($newName);
         $newItem = $this->memoryItemRepository->update($item);
@@ -55,7 +46,8 @@ class MemoryItemRepositoryTest extends TestCase
 
     public function testUpdateItemNotFoundException()
     {        
-        $newItem = $this->createItem(2);
+        $newItem = $this->createItem('manager');
+        $newItem->setId(uniqid());
         $newItem->setName("manager");
         $this->expectException(NotFoundItemException::class);
         $this->memoryItemRepository->update($newItem);
@@ -64,10 +56,20 @@ class MemoryItemRepositoryTest extends TestCase
 
     public function testFindById()
     {
-        $id = 1;
+        $item = $this->memoryItemRepository->findByName('admin');
+        $id = $item->getId();
         $findedItem = $this->memoryItemRepository->findById($id);
         $this->assertInstanceOf(Item::class, $findedItem);
         $this->assertEquals($id, $findedItem->getId());
+    }
+    
+    
+    public function testFindByName()
+    {
+        $item = $this->memoryItemRepository->findByName('admin');
+        $this->assertInstanceOf(Item::class, $item);
+        $this->assertEquals('admin', $item->getName());
+        
     }
 
 
@@ -80,25 +82,22 @@ class MemoryItemRepositoryTest extends TestCase
 
     public function testRemoveItem()
     {
-        $id = 1;
-        $item = $this->memoryItemRepository->findById($id);
+        $item = $this->memoryItemRepository->findByName('admin');
         $this->memoryItemRepository->remove($item);
-        $this->assertFalse($this->memoryItemRepository->exists($id));
+        $this->assertFalse($this->memoryItemRepository->existsByName('admin'));
     }
 
 
     public function testRemoveItemCathNotFoundException()
     {
-        $id = -1;
-        $item = $this->createItem($id);
+        $item = $this->createItem('manager');
+        $item->setId(-1);
         $this->expectException(NotFoundItemException::class);
         $this->memoryItemRepository->remove($item);
     }
 
-    private function createItem(int $id): Item
+    private function createItem(string $name): Item
     {
-        $identity = new StaticIntegerIdentity($id);
-        $item = new Role($identity, "admin", Item::TYPE_ROLE);
-        return $item;
+        return new Role($name);
     }
 }

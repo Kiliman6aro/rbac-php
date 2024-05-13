@@ -1,14 +1,13 @@
 <?php
 namespace HopHey\Rbac\Tests\Services;
 
-use PHPUnit\Framework\TestCase;
+use HopHey\Rbac\Contracts\Factories\ItemFactoryContract;
 use HopHey\Rbac\Contracts\Repositories\ItemChildRepository;
 use HopHey\Rbac\Contracts\Repositories\ItemRepository;
-use HopHey\Rbac\Services\AuthManager;
-use HopHey\Rbac\Factories\ItemFactory;
-use HopHey\Rbac\Entities\StaticIntegerIdentity;
 use HopHey\Rbac\Contracts\Services\AuthManagerService;
-use HopHey\Rbac\Contracts\Factories\ItemFactoryContract;
+use HopHey\Rbac\Factories\ItemFactory;
+use HopHey\Rbac\Services\AuthManager;
+use PHPUnit\Framework\TestCase;
 
 class AuthManagerTest extends TestCase
 {
@@ -31,7 +30,7 @@ class AuthManagerTest extends TestCase
     
     public function testAddRole()
     {
-        $role = $this->factory->createRole(new StaticIntegerIdentity(1), 'admin');
+        $role = $this->factory->createRole('admin');
         $this->itemRepository->expects($this->once())
         ->method('insert')
         ->with($role);
@@ -43,7 +42,7 @@ class AuthManagerTest extends TestCase
     public function testAddPermission()
     {
         
-        $permission = $this->factory->createPermission(new StaticIntegerIdentity(1), 'createPost');
+        $permission = $this->factory->createPermission('createPost');
         $this->itemRepository->expects($this->once())
         ->method('insert')
         ->with($permission);
@@ -54,8 +53,8 @@ class AuthManagerTest extends TestCase
     
     public function testAddChild()
     {
-        $role = $this->factory->createRole(new StaticIntegerIdentity(1), "admin");
-        $permission = $this->factory->createPermission(new StaticIntegerIdentity(2), 'createPost');
+        $role = $this->factory->createRole("admin");
+        $permission = $this->factory->createPermission('createPost');
         
         $this->itemChildRepository->expects($this->once())
         ->method('insert')

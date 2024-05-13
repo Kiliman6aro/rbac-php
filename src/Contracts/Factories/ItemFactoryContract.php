@@ -2,16 +2,14 @@
 
 namespace HopHey\Rbac\Contracts\Factories;
 
-use HopHey\Rbac\Contracts\Identity;
-use HopHey\Rbac\Entities\Item;
-use HopHey\Rbac\Entities\Role;
 use HopHey\Rbac\Entities\Permission;
+use HopHey\Rbac\Entities\Role;
 
 interface ItemFactoryContract
 {
-    public function createRole(Identity $identity, string $name): Role;
+    public function createRole(string $name): Role;
     
-    public function createPermission(Identity $identity, string $name): Permission;
+    public function createPermission(string $name): Permission;
     
 }
 
