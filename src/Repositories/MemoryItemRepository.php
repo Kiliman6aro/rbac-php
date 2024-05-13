@@ -11,11 +11,11 @@ class MemoryItemRepository implements ItemRepository
 {
     private array $collection = [];
 
-    public function insert(Item $item): void
+    public function insert(Item $item): Item
     {
         $item->setId(uniqid());
         $this->collection[$item->getId()] = $item;
-       
+        return $item;
     }
     public function update(Item $item): Item
     {

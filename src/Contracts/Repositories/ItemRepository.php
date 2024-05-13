@@ -6,7 +6,7 @@ use HopHey\Rbac\Entities\Item;
 
 interface ItemRepository
 {
-    public function insert(Item $item): void;
+    public function insert(Item $item): Item;
     
     public function update(Item $item): Item;
     
