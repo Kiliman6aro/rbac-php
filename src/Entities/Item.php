@@ -3,12 +3,13 @@
 namespace HopHey\Rbac\Entities;
 use HopHey\Rbac\Contracts\Identity;
 
-class Item
+abstract class Item
 {
     public const TYPE_ROLE = 1;
     public const TYPE_PERMISSION = 2;
 
     protected Identity $identity;
+    
     protected string $name;
 
     protected int $type;
@@ -16,11 +17,10 @@ class Item
     /**
      * @param string $name
      */
-    public function __construct(Identity $identity, string $name, ?int $type = null)
+    public function __construct(Identity $identity, string $name)
     {
         $this->identity = $identity;
         $this->name = $name;
-        $this->type = $type;
     }
 
     public function getId(): string

@@ -2,7 +2,8 @@
 
 namespace HopHey\Rbac\Tests\Repositories;
 
-use HopHey\Rbac\Entities\Item;
+use HopHey\Rbac\Entities\Permission;
+use HopHey\Rbac\Entities\Role;
 use HopHey\Rbac\Entities\StaticIntegerIdentity;
 use HopHey\Rbac\Repositories\MemoryItemChildRepository;
 use PHPUnit\Framework\TestCase;
@@ -17,8 +18,8 @@ class MemoryItemChildRepositoryTest extends TestCase
     }
     public function testInsert()
     {
-        $parent = new Item(StaticIntegerIdentity::generate(1), "admin", Item::TYPE_ROLE);
-        $child = new Item(StaticIntegerIdentity::generate(2), "edit", Item::TYPE_PERMISSION);
+        $parent = new Role(StaticIntegerIdentity::generate(1), "admin");
+        $child = new Permission(StaticIntegerIdentity::generate(2), "edit");
         $this->assertFalse($this->memoryItemChildRepository->existsParent($parent));
         $this->memoryItemChildRepository->insert($parent, $child);
         $this->assertTrue($this->memoryItemChildRepository->existsParent($parent));
@@ -27,27 +28,27 @@ class MemoryItemChildRepositoryTest extends TestCase
 
     public function testFindChildsByParent()
     {
-        $parent = new Item(StaticIntegerIdentity::generate(1), "admin", Item::TYPE_ROLE);
-        $this->memoryItemChildRepository->insert($parent, new Item(StaticIntegerIdentity::generate(2), "edit", Item::TYPE_PERMISSION));
-        $this->memoryItemChildRepository->insert($parent, new Item(StaticIntegerIdentity::generate(3), "remvove", Item::TYPE_PERMISSION));
+        $parent = new Role(StaticIntegerIdentity::generate(1), "admin");
+        $this->memoryItemChildRepository->insert($parent, new Permission(StaticIntegerIdentity::generate(2), "edit"));
+        $this->memoryItemChildRepository->insert($parent, new Permission(StaticIntegerIdentity::generate(3), "remvove"));
         $childs = $this->memoryItemChildRepository->findChildsByParent($parent);
         $this->assertCount(2, $childs);
     }
 
     public function testFindEmptyChildsByParent()
     {
-        $parent = new Item(StaticIntegerIdentity::generate(1), "admin", Item::TYPE_ROLE);
+        $parent = new Role(StaticIntegerIdentity::generate(1), "admin");
         $childs = $this->memoryItemChildRepository->findChildsByParent($parent);
         $this->assertEmpty($childs);
     }
 
     public function testFindParentsByChild()
     {
-        $adminRole = new Item(StaticIntegerIdentity::generate(1), "admin", Item::TYPE_ROLE);
-        $managerRole = new Item(StaticIntegerIdentity::generate(2), "manager", Item::TYPE_ROLE);
-        $edit = new Item(StaticIntegerIdentity::generate(4), "edit", Item::TYPE_PERMISSION);
-        $insert = new Item(StaticIntegerIdentity::generate(3), "insert", Item::TYPE_PERMISSION);
-        $remove = new Item(StaticIntegerIdentity::generate(5), "remvove", Item::TYPE_PERMISSION);
+        $adminRole = new Role(StaticIntegerIdentity::generate(1), "admin");
+        $managerRole = new Role(StaticIntegerIdentity::generate(2), "manager");
+        $edit = new Permission(StaticIntegerIdentity::generate(4), "edit");
+        $insert = new Permission(StaticIntegerIdentity::generate(3), "insert");
+        $remove = new Permission(StaticIntegerIdentity::generate(5), "remvove");
         $this->memoryItemChildRepository->insert($adminRole, $insert);
         $this->memoryItemChildRepository->insert($adminRole, $edit);
         $this->memoryItemChildRepository->insert($adminRole, $remove);
@@ -64,10 +65,10 @@ class MemoryItemChildRepositoryTest extends TestCase
 
     public function testRemoveAllChildsByParent()
     {
-        $adminRole = new Item(StaticIntegerIdentity::generate(1), "admin", Item::TYPE_ROLE);
-        $edit = new Item(StaticIntegerIdentity::generate(4), "edit", Item::TYPE_PERMISSION);
-        $insert = new Item(StaticIntegerIdentity::generate(3), "insert", Item::TYPE_PERMISSION);
-        $remove = new Item(StaticIntegerIdentity::generate(5), "remvove", Item::TYPE_PERMISSION);
+        $adminRole = new Role(StaticIntegerIdentity::generate(1), "admin");
+        $edit = new Permission(StaticIntegerIdentity::generate(4), "edit");
+        $insert = new Permission(StaticIntegerIdentity::generate(3), "insert");
+        $remove = new Permission(StaticIntegerIdentity::generate(5), "remvove");
         $this->memoryItemChildRepository->insert($adminRole, $insert);
         $this->memoryItemChildRepository->insert($adminRole, $edit);
         $this->memoryItemChildRepository->insert($adminRole, $remove);
@@ -79,8 +80,8 @@ class MemoryItemChildRepositoryTest extends TestCase
 
     public function testRemoveChildByParent()
     {
-        $adminRole = new Item(StaticIntegerIdentity::generate(1), "admin", Item::TYPE_ROLE);
-        $edit = new Item(StaticIntegerIdentity::generate(4), "edit", Item::TYPE_PERMISSION);
+        $adminRole = new Role(StaticIntegerIdentity::generate(1), "admin");
+        $edit = new Permission(StaticIntegerIdentity::generate(4), "edit");
 
         $this->memoryItemChildRepository->insert($adminRole, $edit);
         $this->assertTrue($this->memoryItemChildRepository->existsParent($adminRole));

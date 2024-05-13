@@ -3,6 +3,7 @@
 namespace HopHey\Rbac\Tests\Repositories;
 
 use HopHey\Rbac\Entities\Item;
+use HopHey\Rbac\Entities\Role;
 use HopHey\Rbac\Entities\StaticIntegerIdentity;
 use HopHey\Rbac\Exceptions\AlreadyItemExistsException;
 use HopHey\Rbac\Exceptions\NotFoundItemException;
@@ -97,7 +98,7 @@ class MemoryItemRepositoryTest extends TestCase
     private function createItem(int $id): Item
     {
         $identity = new StaticIntegerIdentity($id);
-        $item = new Item($identity, "admin", Item::TYPE_ROLE);
+        $item = new Role($identity, "admin", Item::TYPE_ROLE);
         return $item;
     }
 }
