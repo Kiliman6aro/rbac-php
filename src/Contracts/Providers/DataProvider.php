@@ -5,7 +5,7 @@ interface DataProvider
 {
     public function findBy(array $criteria): array;
     
-    public function insert(array $data): void;
+    public function insert(array $data): array;
     
     public function update(array $criteria, array $data): int;
     

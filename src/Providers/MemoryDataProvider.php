@@ -30,9 +30,12 @@ class MemoryDataProvider implements DataProvider
         return $result;
     }
 
-    public function insert(array $data): void
+    public function insert(array $data): array
     {
+        $data['id'] = uniqid();
         $this->data[] = $data;
+        
+        return $data;
     }
     
     public function count(array $criteria = null): int

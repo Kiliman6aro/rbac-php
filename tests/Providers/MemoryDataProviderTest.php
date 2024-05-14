@@ -92,8 +92,9 @@ class MemoryDataProviderTest extends TestCase
     {
         
         $this->assertEquals(5, $this->dataProvider->count());
-        $this->dataProvider->insert(['name' => 'root']);
+        $item = $this->dataProvider->insert(['name' => 'root']);
         $this->assertEquals(6, $this->dataProvider->count());
+        $this->assertArrayHasKey('id', $item);
     }
     
     
