@@ -1,11 +1,10 @@
 <?php
 namespace HopHey\Rbac\Factories;
 
-use HopHey\Rbac\Contracts\Factories\ItemFactoryContract;
 use HopHey\Rbac\Entities\Permission;
 use HopHey\Rbac\Entities\Role;
 
-class ItemFactory implements ItemFactoryContract
+class ItemFactory implements \HopHey\Rbac\Contracts\Factories\ItemFactory
 {
 
     public function createRole($name): Role
