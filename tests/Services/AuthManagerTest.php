@@ -2,7 +2,6 @@
 namespace HopHey\Rbac\Tests\Services;
 
 use HopHey\Rbac\Contracts\Repositories\ItemChildRepository;
-use HopHey\Rbac\Contracts\Repositories\ItemRepositoryContract;
 use HopHey\Rbac\Contracts\Services\AuthManagerService;
 use HopHey\Rbac\Services\AuthManager;
 use PHPUnit\Framework\TestCase;
@@ -14,14 +13,14 @@ class AuthManagerTest extends TestCase
     
     private \HopHey\Rbac\Factories\ItemFactory $factory;
     
-    private ItemRepositoryContract $itemRepository;
+    private \HopHey\Rbac\Contracts\Repositories\ItemRepository $itemRepository;
     
     private ItemChildRepository $itemChildRepository;
     
     protected function setUp(): void
     {
         $this->itemChildRepository = $this->createMock(ItemChildRepository::class);
-        $this->itemRepository = $this->createMock(ItemRepositoryContract::class);
+        $this->itemRepository = $this->createMock(\HopHey\Rbac\Contracts\Repositories\ItemRepository::class);
         
         $this->authManager = new AuthManager($this->itemRepository, $this->itemChildRepository);
         $this->factory = new ItemFactory();

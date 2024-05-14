@@ -5,16 +5,16 @@ use HopHey\Rbac\Contracts\Services\AuthManagerService;
 use HopHey\Rbac\Entities\Permission;
 use HopHey\Rbac\Entities\Item;
 use HopHey\Rbac\Entities\Role;
-use HopHey\Rbac\Contracts\Repositories\ItemRepositoryContract;
+use HopHey\Rbac\Contracts\Repositories\ItemRepository;
 use HopHey\Rbac\Contracts\Repositories\ItemChildRepository;
 
 class AuthManager implements AuthManagerService
 {
-    protected ItemRepositoryContract $itemRepository;
+    protected ItemRepository $itemRepository;
     
     protected ItemChildRepository $itemChildRepository;
     
-    public function __construct(ItemRepositoryContract $itemRepository, ItemChildRepository $itemChildRepository)
+    public function __construct(ItemRepository $itemRepository, ItemChildRepository $itemChildRepository)
     {
         $this->itemRepository = $itemRepository;
         $this->itemChildRepository = $itemChildRepository;
