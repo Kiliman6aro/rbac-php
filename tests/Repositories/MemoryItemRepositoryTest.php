@@ -4,19 +4,18 @@ namespace HopHey\Rbac\Tests\Repositories;
 
 use HopHey\Rbac\Entities\Item;
 use HopHey\Rbac\Entities\Role;
-use HopHey\Rbac\Exceptions\AlreadyItemExistsException;
 use HopHey\Rbac\Exceptions\NotFoundItemException;
-use HopHey\Rbac\Repositories\MemoryItemRepository;
+use HopHey\Rbac\Repositories\ItemRepository;
 use PHPUnit\Framework\TestCase;
 
 class MemoryItemRepositoryTest extends TestCase
 {
 
-    private MemoryItemRepository $memoryItemRepository;
+    private ItemRepository $memoryItemRepository;
     
     protected function setUp(): void
     {
-        $this->memoryItemRepository = new MemoryItemRepository();
+        $this->memoryItemRepository = new ItemRepository();
 
         $item = $this->createItem('admin');
         $item->setId(1);

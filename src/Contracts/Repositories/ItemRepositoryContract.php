@@ -4,7 +4,7 @@ namespace HopHey\Rbac\Contracts\Repositories;
 
 use HopHey\Rbac\Entities\Item;
 
-interface ItemRepository
+interface ItemRepositoryContract
 {
     public function insert(Item $item): Item;
     

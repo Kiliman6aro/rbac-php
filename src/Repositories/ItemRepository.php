@@ -2,12 +2,11 @@
 
 namespace HopHey\Rbac\Repositories;
 
-use HopHey\Rbac\Contracts\Repositories\ItemRepository;
+use HopHey\Rbac\Contracts\Repositories\ItemRepositoryContract;
 use HopHey\Rbac\Entities\Item;
-use HopHey\Rbac\Exceptions\AlreadyItemExistsException;
 use HopHey\Rbac\Exceptions\NotFoundItemException;
 
-class MemoryItemRepository implements ItemRepository
+class ItemRepository implements ItemRepositoryContract
 {
     private array $collection = [];
 
