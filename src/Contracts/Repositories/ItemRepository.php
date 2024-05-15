@@ -6,11 +6,12 @@ use HopHey\Rbac\Entities\Item;
 
 interface ItemRepository
 {
+
     public function insert(Item $item): Item;
     
     public function update(Item $item): Item;
     
-    public function remove(Item $item): void;
+    public function remove(Item $item): bool;
     
     public function findById($id): ?Item;
     
