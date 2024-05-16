@@ -1,14 +1,14 @@
 <?php
 namespace HopHey\Rbac\Services;
 
-use HopHey\Rbac\Contracts\Services\AuthManagerService;
+use HopHey\Rbac\Contracts\Services\AuthManager as AuthManagerContract;
 use HopHey\Rbac\Entities\Permission;
 use HopHey\Rbac\Entities\Item;
 use HopHey\Rbac\Entities\Role;
 use HopHey\Rbac\Contracts\Repositories\ItemRepository;
 use HopHey\Rbac\Contracts\Repositories\ItemChildRepository;
 
-class AuthManager implements AuthManagerService
+class AuthManager implements AuthManagerContract
 {
     protected ItemRepository $itemRepository;
     

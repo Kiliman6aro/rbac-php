@@ -5,7 +5,7 @@ use HopHey\Rbac\Entities\Role;
 use HopHey\Rbac\Entities\Permission;
 use HopHey\Rbac\Entities\Item;
 
-interface AuthManagerService
+interface AuthManager
 {
     public function addRole(Role $role): void;
     

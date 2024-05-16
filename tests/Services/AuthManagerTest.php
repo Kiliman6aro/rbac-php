@@ -2,33 +2,32 @@
 namespace HopHey\Rbac\Tests\Services;
 
 use HopHey\Rbac\Contracts\Repositories\ItemChildRepository;
-use HopHey\Rbac\Contracts\Services\AuthManagerService;
+use HopHey\Rbac\Contracts\Services\AuthManager as AuthManagerContract;
 use HopHey\Rbac\Services\AuthManager;
 use PHPUnit\Framework\TestCase;
-use HopHey\Rbac\Factories\ItemFactory;
+use HopHey\Rbac\Contracts\Repositories\ItemRepository;
+use HopHey\Rbac\Entities\Permission;
+use HopHey\Rbac\Entities\Role;
 
 class AuthManagerTest extends TestCase
 {
-    private AuthManagerService $authManager;
+    private AuthManagerContract $authManager;
     
-    private \HopHey\Rbac\Factories\ItemFactory $factory;
-    
-    private \HopHey\Rbac\Contracts\Repositories\ItemRepository $itemRepository;
+    private ItemRepository $itemRepository;
     
     private ItemChildRepository $itemChildRepository;
     
     protected function setUp(): void
     {
         $this->itemChildRepository = $this->createMock(ItemChildRepository::class);
-        $this->itemRepository = $this->createMock(\HopHey\Rbac\Contracts\Repositories\ItemRepository::class);
+        $this->itemRepository = $this->createMock(ItemRepository::class);
         
         $this->authManager = new AuthManager($this->itemRepository, $this->itemChildRepository);
-        $this->factory = new ItemFactory();
     }
     
     public function testAddRole()
     {
-        $role = $this->factory->createRole('admin');
+        $role = new Role("admin");
         $this->itemRepository->expects($this->once())
         ->method('insert')
         ->with($role);
@@ -40,7 +39,7 @@ class AuthManagerTest extends TestCase
     public function testAddPermission()
     {
         
-        $permission = $this->factory->createPermission('createPost');
+        $permission = new Permission('createPost');
         $this->itemRepository->expects($this->once())
         ->method('insert')
         ->with($permission);
@@ -51,8 +50,8 @@ class AuthManagerTest extends TestCase
     
     public function testAddChild()
     {
-        $role = $this->factory->createRole("admin");
-        $permission = $this->factory->createPermission('createPost');
+        $role = new Role("admin");
+        $permission = new Permission('createPost');
         
         $this->itemChildRepository->expects($this->once())
         ->method('insert')
