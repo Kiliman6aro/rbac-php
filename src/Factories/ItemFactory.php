@@ -25,12 +25,12 @@ class ItemFactory implements \HopHey\Rbac\Contracts\Factories\ItemFactory
         return $item;
     }
 
-    public function createRole($name): Role
+    public function createRole($name): Item
     {
         return new Role($name);
     }
 
-    public function createPermission($name): Permission
+    public function createPermission($name): Item
     {
         return new Permission($name);
     }
